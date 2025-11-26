@@ -110,17 +110,6 @@ Check for:
 ```
 %sudo  ALL=(ALL:ALL) ALL
 ```
-
----
-
-## Expected Outcomes
-
-* Ability to safely run administrative commands with sudo
-* Understand how sudo permissions work
-* Edit system files and manage services using sudo
-* Switch to root shell when required
-* Add users to sudo group and validate access
-
 ---
 
 ## Tips
@@ -130,6 +119,3 @@ Check for:
 * Every sudo action is logged in `/var/log/auth.log`
 * Avoid enabling passwordless sudo unless necessary
 
----
-
-If you want, I can also generate **lab PDFs**, **extra tasks**, or **a quiz** for this module.
