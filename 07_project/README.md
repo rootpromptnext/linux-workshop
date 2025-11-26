@@ -48,7 +48,6 @@ ls -l /var/www/html
 ls -l /etc/nginx
 ```
 
-````
 ---
 
 # Manage Website Files
@@ -120,9 +119,6 @@ Test:
 su - webadmin
 nano /var/www/html/index.html
 ```
-
-````
-
 ---
 
 # Manage NGINX Service
@@ -157,8 +153,6 @@ Check logs:
 ```bash
 sudo journalctl -u nginx --since "10 min ago"
 ```
-
-````
 
 ---
 
@@ -198,9 +192,6 @@ Check listening port:
 ```bash
 ss -tulnp | grep nginx
 ```
-
-````
-
 ---
 
 # NGINX Automation Script
@@ -238,7 +229,7 @@ Run:
 ./nginx_monitor.sh
 ```
 
-```
+
 
 
 
