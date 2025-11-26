@@ -11,7 +11,7 @@ We will learn:
 ✔ Manage and troubleshoot services  
 ✔ Test and verify networking components  
 ✔ Write a real-world automation script  
-```
+
 
 ---
 # Install NGINX
@@ -85,9 +85,6 @@ Restart nginx:
 ```bash
 sudo systemctl restart nginx
 ```
-
-````
-
 ---
 
 
