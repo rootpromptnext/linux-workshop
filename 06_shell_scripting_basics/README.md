@@ -14,13 +14,13 @@ By the end of this lab, you will be able to write and run basic automation scrip
 
 ## Pre-requisites
 - Basic Linux command usage  
-- Text editor knowledge (nano / vim)
+- Text editor knowledge (vim)
 
 ---
 
 ### Create your first script
 ```bash
-nano hello.sh
+vim hello.sh
 ````
 
 Add the following:
@@ -40,7 +40,7 @@ chmod +x hello.sh
 ### Script with variables
 
 ```bash
-nano variables.sh
+vim variables.sh
 ```
 
 Add:
@@ -60,7 +60,7 @@ Run:
 ### User input script
 
 ```bash
-nano input.sh
+vim input.sh
 ```
 
 Add:
@@ -75,7 +75,7 @@ echo "Hello, $user!"
 ### Script with conditions
 
 ```bash
-nano check_disk.sh
+vim check_disk.sh
 ```
 
 Add:
@@ -94,7 +94,7 @@ fi
 ### Script with loops
 
 ```bash
-nano loop.sh
+vim loop.sh
 ```
 
 Add:
@@ -110,7 +110,7 @@ done
 ### Bonus: Function inside script
 
 ```bash
-nano function.sh
+vim function.sh
 ```
 
 Add:
