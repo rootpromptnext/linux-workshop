@@ -63,10 +63,10 @@ Replace default page:
 ```bash
 cd /var/www/html
 sudo mv index.nginx-debian.html index_backup.html
-sudo nano index.html
+sudo vim index.html
 ````
 
-Add:
+Add below or refer -> https://github.com/rootpromptnext/linux-workshop/blob/main/sample-index.html
 
 ```html
 <h1>Welcome to the Linux Workshop Website</h1>
@@ -117,7 +117,7 @@ Test:
 
 ```bash
 su - webadmin
-nano /var/www/html/index.html
+vim /var/www/html/index.html
 ```
 ---
 
@@ -198,7 +198,7 @@ ss -tulnp | grep nginx
 
 Create script:
 ```bash
-nano nginx_monitor.sh
+vim nginx_monitor.sh
 ````
 
 Add:
