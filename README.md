@@ -13,13 +13,15 @@ This workshop is designed to provide hands-on experience with Linux commands, fi
 - Terminal or SSH access  
 
 ## Workshop Structure
-The workshop is divided into 6 modules with hands-on labs:  
+The workshop is divided into 8 modules with hands-on labs:  
 
 1. **Linux Basics** – Terminal navigation, file system, Linux versions  
 2. **File Management** – Create, copy, move, delete, and view files  
 3. **Users, Groups & Permissions** – User creation, file permissions, ownership  
 4. **Processes & Services** – Process management and service control  
 5. **Networking Basics** – IP, ping, traceroute, ports  
-6. **Shell Scripting Basics** – Bash scripting, variables, loops, conditionals  
+6. **Shell Scripting Basics** – Bash scripting, variables, loops, conditionals
+7. **sudo** - Running commands with elevated privileges
+8. **project** - Build a small Linux automation project using users, permissions, shell scripts, services, and logs to apply everything learned so far
 
 
