@@ -1,4 +1,4 @@
-# Free Linux Workshop 
+# Linux Workshop 
 
 ## Objective
 This workshop is designed to provide hands-on experience with Linux commands, file management, users & permissions, processes, networking, and basic shell scripting.  
