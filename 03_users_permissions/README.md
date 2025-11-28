@@ -131,6 +131,7 @@ This changes to:
 # **Change Ownership & Group**
 
 ```bash
+sudo groupadd devgroup
 sudo chown labuser testfile.txt
 sudo chgrp devgroup testfile.txt
 ```
