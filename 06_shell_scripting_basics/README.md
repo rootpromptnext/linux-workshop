@@ -1,43 +1,58 @@
-# Lab 06: Shell Scripting Basics
+# **Lab 06: Shell Scripting Basics (Enhanced Version)**
 
-## Objective
-Learn the fundamentals of Bash shell scripting including variables, conditionals, loops, and script execution.  
-By the end of this lab, you will be able to write and run basic automation scripts in Linux.
+## **Objective**
 
-## Topics Covered
-- Creating and executing bash scripts  
-- Variables and user input  
-- Conditional statements (`if`, `else`)  
-- Loops (`for`, `while`)  
-- Using functions (optional)  
-- Script permissions (`chmod +x`)  
+Learn the fundamentals of Bash scripting including variables, conditionals, loops, functions, debugging, and automation basics.
+By the end of this lab, you should be comfortable writing simple to moderate shell scripts used in DevOps and system administration.
 
-## Pre-requisites
-- Basic Linux command usage  
-- Text editor knowledge (vim)
+## **Topics Covered**
+
+* What is a shell script and why use it
+* Creating & executing bash scripts
+* Variables (system, user-defined)
+* User input (`read`)
+* Arithmetic operations
+* Conditional statements (`if`, `elif`, `else`)
+* Loops (`for`, `while`, `until`)
+* Functions
+* Exit codes and `$?`
+* Script permissions
+* Debugging (`set -x`)
 
 ---
 
-### Create your first script
+## **Pre-requisites**
+
+* Basic Linux usage
+* Familiarity with `vim` or any text editor
+
+---
+
+# **Create your first script**
+
 ```bash
 vim hello.sh
-````
+```
 
-Add the following:
+Add:
 
 ```bash
 #!/bin/bash
 echo "Hello, Linux Workshop!"
 ```
 
-Run it:
+Run:
 
 ```bash
 chmod +x hello.sh
 ./hello.sh
 ```
 
-### Script with variables
+---
+
+# **Variables (simple and dynamic)**
+
+### **Static variable**
 
 ```bash
 vim variables.sh
@@ -48,7 +63,8 @@ Add:
 ```bash
 #!/bin/bash
 name="Linux User"
-echo "Welcome, $name!"
+course="Shell Scripting"
+echo "Welcome, $name! You are learning $course."
 ```
 
 Run:
@@ -57,7 +73,16 @@ Run:
 ./variables.sh
 ```
 
-### User input script
+### **Using command substitution**
+
+```bash
+today=$(date)
+echo "Today is $today"
+```
+
+---
+
+# **User input**
 
 ```bash
 vim input.sh
@@ -72,7 +97,40 @@ read user
 echo "Hello, $user!"
 ```
 
-### Script with conditions
+Run:
+
+```bash
+./input.sh
+```
+
+---
+
+# **Arithmetic Operations**
+
+```bash
+vim calc.sh
+```
+
+Add:
+
+```bash
+#!/bin/bash
+a=10
+b=5
+
+echo "Addition: $((a + b))"
+echo "Multiplication: $((a * b))"
+```
+
+Run:
+
+```bash
+./calc.sh
+```
+
+---
+
+# **Conditions (`if/elif/else`)**
 
 ```bash
 vim check_disk.sh
@@ -84,14 +142,20 @@ Add:
 #!/bin/bash
 usage=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
 
-if [ $usage -gt 70 ]; then
-    echo "Warning: Disk usage is above 70%!"
+if [ $usage -gt 90 ]; then
+    echo "CRITICAL: Disk usage above 90%!"
+elif [ $usage -gt 70 ]; then
+    echo "Warning: Disk usage above 70%."
 else
-    echo "Disk usage is normal."
+    echo "Disk usage normal."
 fi
 ```
 
-### Script with loops
+---
+
+# **Loops**
+
+## **For loop**
 
 ```bash
 vim loop.sh
@@ -101,13 +165,53 @@ Add:
 
 ```bash
 #!/bin/bash
-for i in 1 2 3 4 5
+for i in {1..5}
 do
     echo "Count: $i"
 done
 ```
 
-### Bonus: Function inside script
+## **While loop**
+
+```bash
+vim while.sh
+```
+
+Add:
+
+```bash
+#!/bin/bash
+count=1
+while [ $count -le 5 ]
+do
+    echo "Number: $count"
+    count=$((count + 1))
+done
+```
+
+---
+
+# **Until Loop (Less known but useful)**
+
+```bash
+vim until.sh
+```
+
+Add:
+
+```bash
+#!/bin/bash
+x=1
+until [ $x -gt 5 ]
+do
+    echo "Value: $x"
+    x=$((x + 1))
+done
+```
+
+---
+
+# **Functions**
 
 ```bash
 vim function.sh
@@ -117,24 +221,78 @@ Add:
 
 ```bash
 #!/bin/bash
+
 greet() {
     echo "Welcome to the Shell Scripting Lab!"
 }
 
+show_date() {
+    echo "Today is: $(date)"
+}
+
 greet
+show_date
 ```
+
 ---
 
-## Tips
+# **Exit Codes and `$?`**
 
-* Always start scripts with:
+```bash
+vim exitcode.sh
+```
+
+Add:
+
+```bash
+#!/bin/bash
+
+ls /tmp
+echo "Exit code of last command: $?"
+```
+
+Exit codes tell if a command succeeded:
+
+* `0` → success
+* Non-zero → error
+
+---
+
+# **Debugging Your Script**
+
+### **Method 1: Run with debug mode**
+
+```bash
+bash -x script.sh
+```
+
+### **Method 2: Add inside script**
+
+```bash
+set -x   # enable debugging
+# your script
+set +x   # disable debugging
+```
+
+---
+
+# ** Best Practices**
+
+* Always start with:
 
   ```bash
   #!/bin/bash
   ```
-* Use `bash -x script.sh` for debugging
-* Make scripts executable using:
+* Use meaningful variable names
+* Always handle input validation
+* Use comments:
 
   ```bash
-  chmod +x <scriptname>
+  # This script checks CPU load
   ```
+* Test scripts with:
+
+  ```bash
+  bash -n script.sh   # syntax check
+  ```
+
