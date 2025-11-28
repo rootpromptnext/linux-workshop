@@ -291,7 +291,7 @@ set +x   # disable debugging
 
 ---
 
-# ** Best Practices**
+# Best Practices
 
 * Always start with:
 
