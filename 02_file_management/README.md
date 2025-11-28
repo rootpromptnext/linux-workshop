@@ -1,4 +1,4 @@
-# **Lab 02: File Management in Linux (Enhanced)**
+# **Lab 02: File Management in Linux**
 
 ## **Objective**
 
