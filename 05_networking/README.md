@@ -1,88 +1,252 @@
-# Lab 05: Networking Basics
+# **Lab 05: Networking Basics (Enhanced)**
 
-## Objective
-Understand basic Linux networking commands to inspect network interfaces, test connectivity, check routes, and identify open ports and services.
+## **Objective**
 
-## Topics Covered
-- Checking IP configuration  
-- Testing connectivity (ping)  
-- DNS lookup (nslookup, dig if available)  
-- Checking routes  
-- Viewing open ports and connections (`ss`, `netstat`)  
-- Basic troubleshooting  
-
-## Pre-requisites
-- Linux VM with internet access  
-- Basic command-line knowledge  
+Learn how to inspect Linux network configuration, test connectivity, verify DNS, check routing, and identify open ports and services. Gain hands-on experience troubleshooting basic network issues.
 
 ---
-### View network interfaces & IP addresses
+
+## **Topics Covered**
+
+* Viewing IP configuration (`ip`, `ifconfig`)
+* Checking link status & interface statistics
+* Testing connectivity with `ping`
+* DNS lookups (`nslookup`, `dig`)
+* Checking routes & gateways
+* Finding open ports (`ss`, `netstat`)
+* Testing remote port connectivity (`nc`)
+* Viewing hostname & hosts file
+* Basic troubleshooting steps
+
+---
+
+## **Pre-requisites**
+
+* Linux VM with internet access
+* Basic terminal usage
+
+---
+
+# **1. View Network Interfaces & IP Addresses**
+
 ```bash
 ip a
-````
+```
 
-If using legacy tools:
+Check only active interfaces:
+
+```bash
+ip -br a
+```
+
+Legacy tool (if installed):
 
 ```bash
 ifconfig
 ```
 
-### 2. View current routing table
+---
+
+# **2. View Routing Table**
 
 ```bash
 ip route
 ```
 
-### Test connectivity to a server
+Check the default gateway:
+
+```bash
+ip route | grep default
+```
+
+---
+
+# **3. Check Link Status & Statistics**
+
+Check if cable/virtual NIC is up/down:
+
+```bash
+ip link
+```
+
+View interface statistics:
+
+```bash
+ip -s link
+```
+
+---
+
+# **4. Test Network Connectivity**
+
+Ping a public domain:
 
 ```bash
 ping -c 4 google.com
 ```
 
-### Check DNS resolution
+Ping an IP directly:
+
+```bash
+ping -c 4 8.8.8.8
+```
+
+> If `google.com` fails but `8.8.8.8` works → DNS issue.
+
+---
+
+# **5. DNS Lookup**
+
+Using `nslookup`:
 
 ```bash
 nslookup google.com
 ```
 
-If `dig` is installed:
+Using `dig` (if available):
 
 ```bash
 dig google.com
+dig +short google.com
 ```
 
-### Check active ports and listening services
+Check DNS server being used:
+
+```bash
+cat /etc/resolv.conf
+```
+
+---
+
+# **6. Identify Listening Ports & Active Connections**
+
+Modern recommended tool:
 
 ```bash
 ss -tulnp
 ```
 
-Or older tool:
+Breakdown:
+
+* `t` → TCP
+* `u` → UDP
+* `l` → listening
+* `n` → numeric
+* `p` → show process
+
+Older tool:
 
 ```bash
 netstat -tulnp
 ```
 
-### Test port connectivity using telnet or nc
+List TCP connections:
+
+```bash
+ss -tn
+```
+
+List UDP ports:
+
+```bash
+ss -un
+```
+
+---
+
+# **7. Test Port Connectivity**
+
+Check if a remote port is open:
 
 ```bash
 nc -zv google.com 80
 ```
 
-### Verify hostname and hosts file
+Check a local port:
+
+```bash
+nc -zv 127.0.0.1 22
+```
+
+Test manually by connecting (useful for debugging services):
+
+```bash
+nc google.com 80
+```
+
+---
+
+# **8. Check Hostname & Hosts File**
 
 ```bash
 hostname
+hostname -I
 cat /etc/hosts
 ```
+
+Add a manual hostname entry (example):
+
+```bash
+sudo nano /etc/hosts
+```
+
 ---
 
-## Tips
+# **9. Verify External IP (Optional)**
 
-* If `ping` fails:
+```bash
+curl ifconfig.me
+```
 
-  * Check network interface status using `ip a`
-  * Check DNS using `nslookup`
-  * Check gateway using `ip route`
-* Use `ss -tulnp` to quickly find which service is listening on which port
+---
 
+# **10. ARP Table (Local Network Discovery)**
+
+```bash
+ip neigh
+```
+
+---
+
+# **Tips**
+
+### If **ping google.com** fails:
+
+* Check interface status:
+
+  ```bash
+  ip a
+  ```
+* Check if default gateway exists:
+
+  ```bash
+  ip route
+  ```
+* Test DNS resolution:
+
+  ```bash
+  nslookup google.com
+  ```
+
+### If a service is not reachable:
+
+* Check if service is running:
+
+  ```bash
+  systemctl status <service>
+  ```
+* Check if it’s listening on the port:
+
+  ```bash
+  ss -tulnp | grep <port>
+  ```
+
+### Quick network reset (Ubuntu):
+
+```bash
+sudo systemctl restart NetworkManager
+```
+
+
+
+Just tell me which one you want next!
