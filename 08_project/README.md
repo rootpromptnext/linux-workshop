@@ -1,16 +1,16 @@
 # Linux Project (NGINX WebServer)
 
-**“Deploy and Manage a Website Using NGINX ”**
+**Deploy and Manage a Website Using NGINX**
 
 At the end of this project, learners will have a fully working NGINX-based website managed entirely via Linux commands.
 We will learn:
 
-✔ Install and configure NGINX  
-✔ Deploy a custom website  
-✔ Work with Linux permissions & users  
-✔ Manage and troubleshoot services  
-✔ Test and verify networking components  
-✔ Write a real-world automation script  
+- Install and configure NGINX
+- Deploy a custom website
+- Work with Linux permissions & users
+- Manage and troubleshoot services
+- Test and verify networking components
+- Write a real-world automation script  
 
 
 ---
@@ -228,9 +228,3 @@ Run:
 ```bash
 ./nginx_monitor.sh
 ```
-
-
-
-
-
-
