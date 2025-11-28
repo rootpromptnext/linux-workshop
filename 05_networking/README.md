@@ -1,4 +1,4 @@
-# **Lab 05: Networking Basics (Enhanced)**
+# **Lab 05: Networking Basics**
 
 ## **Objective**
 
