@@ -29,7 +29,7 @@ Learn how Linux manages users, groups, and permissions. Understand ownership, ac
 
 ---
 
-# **1. Create a New User**
+# **Create a New User**
 
 ```bash
 sudo useradd labuser
@@ -44,7 +44,7 @@ grep labuser /etc/passwd
 
 ---
 
-# **2. Create a New Group and Add User to It**
+# **Create a New Group and Add User to It**
 
 ```bash
 sudo groupadd devgroup
@@ -62,7 +62,7 @@ groups labuser
 
 ---
 
-# **3. Inspect System User & Group Files**
+# **Inspect System User & Group Files**
 
 ```bash
 cat /etc/passwd    # basic user database
@@ -72,7 +72,7 @@ cat /etc/group     # group membership
 
 ---
 
-# **4. Create a File and Check Permissions**
+# **Create a File and Check Permissions**
 
 ```bash
 touch testfile.txt
@@ -96,7 +96,7 @@ Breakdown:
 
 ---
 
-# **5. Modify Permissions (Symbolic Mode)**
+# **Modify Permissions (Symbolic Mode)**
 
 ```bash
 chmod u+rwx testfile.txt
@@ -112,7 +112,7 @@ ls -l testfile.txt
 
 ---
 
-# **6. Modify Permissions (Numeric Mode)**
+# **Modify Permissions (Numeric Mode)**
 
 ```bash
 chmod 754 testfile.txt
@@ -128,7 +128,7 @@ This changes to:
 
 ---
 
-# **7. Change Ownership & Group**
+# **Change Ownership & Group**
 
 ```bash
 sudo chown labuser testfile.txt
@@ -143,7 +143,7 @@ sudo chown labuser:devgroup testfile.txt
 
 ---
 
-# **8. Check Effective Permissions Using `namei`**
+# **Check Effective Permissions Using `namei`**
 
 ```bash
 namei -l testfile.txt
@@ -153,7 +153,7 @@ This shows **permissions on every directory in the path**, useful for troublesho
 
 ---
 
-# **9. Switch Users**
+# **Switch Users**
 
 Switch to the new user:
 
@@ -176,7 +176,7 @@ exit
 
 ---
 
-# **10. Check sudo Privileges (If Required)**
+# **Check sudo Privileges**
 
 ```bash
 sudo -l
