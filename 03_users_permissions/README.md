@@ -1,4 +1,4 @@
-# **Lab 03: Users, Groups & Permissions (Enhanced)**
+# **Lab 03: Users, Groups & Permissions**
 
 ## **Objective**
 
