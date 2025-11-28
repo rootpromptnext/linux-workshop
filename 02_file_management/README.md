@@ -27,7 +27,7 @@ Learn how to create, view, copy, move, rename, and delete files and directories.
 
 ---
 
-# **1. Create Files & Directories**
+# **Create Files & Directories**
 
 ```bash
 mkdir lab2_demo
@@ -39,7 +39,7 @@ mkdir dir1 dir2
 
 ---
 
-# **2. Rename Files & Directories**
+# **Rename Files & Directories**
 
 ```bash
 mv file1.txt file1_renamed.txt
@@ -48,7 +48,7 @@ mv dir1 dir1_backup
 
 ---
 
-# **3. Copy and Move Files**
+# **Copy and Move Files**
 
 ```bash
 cp file1_renamed.txt dir2/
@@ -57,7 +57,7 @@ mv file2.txt dir2/file2_moved.txt
 
 ---
 
-# **4. Delete Files & Directories**
+# **Delete Files & Directories**
 
 ```bash
 rm report.log
@@ -67,7 +67,7 @@ rm -rf dir2   # use carefully
 
 ---
 
-# **5. View File Contents**
+# **View File Contents**
 
 ```bash
 echo "Welcome to Linux file management lab" > message.txt
@@ -89,7 +89,7 @@ tail -f /var/log/syslog
 
 ---
 
-# **6. Work With Wildcards (Pattern Matching)**
+# **Work With Wildcards (Pattern Matching)**
 
 ```bash
 touch app.log app1.log app2.log notes.txt
@@ -105,7 +105,7 @@ ls app*.log     # app + anything + .log
 
 ---
 
-# **7. Search Files & Text**
+# **Search Files & Text**
 
 ### **Search for Files Using `find`**
 
@@ -123,7 +123,7 @@ grep -i "linux" message.txt     # case-insensitive
 
 ---
 
-# **8. Check File Permissions (Basic View Only)**
+# **Check File Permissions (Basic View Only)**
 
 ```bash
 ls -l
@@ -137,7 +137,7 @@ Example output:
 
 ---
 
-# **9. Basic Vim Usage (Important for Editing Files)**
+# **Basic Vim Usage (Important for Editing Files)**
 
 ## **Open a File**
 
@@ -199,7 +199,7 @@ Ctrl + r  # redo
 
 ---
 
-# **10. Extra Productivity Commands**
+# **Extra Productivity Commands**
 
 ### **Word count**
 
