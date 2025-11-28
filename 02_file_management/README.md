@@ -1,90 +1,153 @@
-# **Lab 02: File Management in Linux**
+# **Lab 02: File Management in Linux (Enhanced)**
 
 ## **Objective**
 
-Learn how to create, view, copy, move, and delete files and directories using Linux command-line tools — and edit files using **Vim**.
+Learn how to create, view, copy, move, rename, and delete files and directories. Practice searching for files, manipulating text content, using wildcards, and editing files using **Vim**.
 
 ---
 
 ## **Topics Covered**
 
 * Creating files & directories
-* Copying, moving, renaming files
-* Deleting files and directories
-* Viewing file contents
+* Renaming files/directories
+* Copying & moving files
+* Deleting files & directories
+* Viewing file contents (cat, less, head, tail)
+* Searching files (find, grep)
 * Using wildcard patterns
-* **Editing files using Vim (basic commands)**
+* Basic Vim editing
+* File permissions quick check (read-only viewing)
 
 ---
 
 ## **Pre-requisites**
 
-* Basic terminal navigation
-* Access to a Linux VM or server
+* Understanding of basic navigation (cd, ls, pwd)
+* Linux VM or server
 
 ---
 
-## **Create files and directories**
+# **1. Create Files & Directories**
 
 ```bash
 mkdir lab2_demo
 cd lab2_demo
-touch file1.txt file2.txt
-mkdir dir1
+
+touch file1.txt file2.txt report.log
+mkdir dir1 dir2
 ```
 
 ---
 
-## **Copy and move files**
+# **2. Rename Files & Directories**
 
 ```bash
-cp file1.txt dir1/
-mv file2.txt dir1/file2_renamed.txt
+mv file1.txt file1_renamed.txt
+mv dir1 dir1_backup
 ```
 
 ---
 
-## **Delete files and directories**
+# **3. Copy and Move Files**
 
 ```bash
-rm file1.txt
-rm -r dir1
+cp file1_renamed.txt dir2/
+mv file2.txt dir2/file2_moved.txt
 ```
 
 ---
 
-## **View file contents**
+# **4. Delete Files & Directories**
+
+```bash
+rm report.log
+rm -r dir1_backup
+rm -rf dir2   # use carefully
+```
+
+---
+
+# **5. View File Contents**
 
 ```bash
 echo "Welcome to Linux file management lab" > message.txt
-cat message.txt
 
-head -n 5 /etc/passwd
-tail -n 5 /var/log/syslog   # if available
+cat message.txt          # View entire file
+less message.txt         # Scroll inside file (q to exit)
+
+head -n 5 /etc/passwd    # First 5 lines
+tail -n 5 /etc/passwd    # Last 5 lines
 ```
+
+**Follow live logs (if available):**
+
+```bash
+tail -f /var/log/syslog
+```
+
+(exit using **Ctrl + C**)
 
 ---
 
-## **Work with wildcards**
+# **6. Work With Wildcards (Pattern Matching)**
 
 ```bash
 touch app.log app1.log app2.log notes.txt
+```
 
-ls *.log
-ls app?.log
+Patterns:
+
+```bash
+ls *.log        # All .log files
+ls app?.log     # app + 1 character + .log
+ls app*.log     # app + anything + .log
 ```
 
 ---
 
-## **Basic Vim Usage (Important for File Editing)**
+# **7. Search Files & Text**
 
-### **Open a file using Vim**
+### **Search for Files Using `find`**
+
+```bash
+find . -name "*.log"
+find /etc -type f -name "host*"
+```
+
+### **Search Inside Files Using `grep`**
+
+```bash
+grep "root" /etc/passwd
+grep -i "linux" message.txt     # case-insensitive
+```
+
+---
+
+# **8. Check File Permissions (Basic View Only)**
+
+```bash
+ls -l
+```
+
+Example output:
+
+```
+-rw-r--r-- 1 user user 20 Feb 18  message.txt
+```
+
+---
+
+# **9. Basic Vim Usage (Important for Editing Files)**
+
+## **Open a File**
 
 ```bash
 vim demo.txt
 ```
 
-### **Insert Mode (edit text)**
+---
+
+## **Insert Mode**
 
 Press:
 
@@ -92,11 +155,11 @@ Press:
 i
 ```
 
-Now you can type normally.
+Now start typing.
 
-### **Save and Exit**
+---
 
-Inside Vim:
+## **Save & Exit**
 
 | Action              | Command |
 | ------------------- | ------- |
@@ -105,7 +168,9 @@ Inside Vim:
 | Save & quit         | `:wq`   |
 | Quit without saving | `:q!`   |
 
-### **Delete, copy, paste inside Vim**
+---
+
+## **Delete, Copy, Paste Lines**
 
 | Action        | Key  |
 | ------------- | ---- |
@@ -113,18 +178,40 @@ Inside Vim:
 | Copy a line   | `yy` |
 | Paste         | `p`  |
 
-### **Search inside file**
+---
 
-Type:
+## **Search Inside Vim**
 
 ```
 /keyword
 ```
 
-### **Undo/redo**
+Jump to next match: `n`
+
+---
+
+## **Undo/Redo**
 
 ```
-u     # undo
-Ctrl + r   # redo
+u         # undo
+Ctrl + r  # redo
 ```
+
+---
+
+# **10. Extra Productivity Commands**
+
+### **Word count**
+
+```bash
+wc -l message.txt     # number of lines
+wc -w message.txt     # number of words
+```
+
+### **Compare two files**
+
+```bash
+diff file1_renamed.txt message.txt
+```
+
 
