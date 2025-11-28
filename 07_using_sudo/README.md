@@ -1,4 +1,4 @@
-# **Lab: Using `sudo` in Linux (Enhanced Version)**
+# **Lab: Using `sudo` in Linux**
 
 ## **Objective**
 
