@@ -1,51 +1,102 @@
-# Lab 03: Users, Groups & Permissions
+# **Lab 03: Users, Groups & Permissions (Enhanced)**
 
-## Objective
-Understand how Linux handles users, groups, permissions, ownership, and access control.  
-Learn to create users, assign groups, and modify permissions using `chmod`, `chown`, and `chgrp`.
+## **Objective**
 
-## Topics Covered
-- User and group management  
-- File permissions (r, w, x)  
-- Numeric vs symbolic permissions  
-- Changing file ownership and group  
-- Using `sudo` and switching users  
-
-## Pre-requisites
-- Basic Linux navigation  
-- A Linux VM with sudo privileges  
+Learn how Linux manages users, groups, and permissions. Understand ownership, access control, numeric vs symbolic permissions, switching users, and basic privilege escalation.
 
 ---
-### Create a new user
+
+## **Topics Covered**
+
+* User & group creation
+* Adding users to groups
+* Understanding `/etc/passwd`, `/etc/shadow`, `/etc/group`
+* File ownership (user/group)
+* Permission types: read, write, execute
+* Numeric (chmod 755) vs symbolic (u+rwx) permissions
+* Changing ownership & group (chown, chgrp)
+* Checking effective permissions
+* Switching users (su)
+* Using `sudo` (view privileges)
+
+---
+
+## **Pre-requisites**
+
+* Linux VM
+* Sudo access
+* Basic command-line navigation
+
+---
+
+# **1. Create a New User**
+
 ```bash
 sudo useradd labuser
 sudo passwd labuser
-````
+```
 
-### Create a new group and add the user
+Check if user created properly:
+
+```bash
+grep labuser /etc/passwd
+```
+
+---
+
+# **2. Create a New Group and Add User to It**
 
 ```bash
 sudo groupadd devgroup
 sudo usermod -aG devgroup labuser
 ```
 
-### Check user and group info
+Verify:
 
 ```bash
 id labuser
 groups labuser
-cat /etc/passwd
-cat /etc/group
 ```
 
-### Create files and check permissions
+> **Note:** User must log out & log back in for group changes to take effect.
+
+---
+
+# **3. Inspect System User & Group Files**
+
+```bash
+cat /etc/passwd    # basic user database
+sudo cat /etc/shadow   # password hashes (root only)
+cat /etc/group     # group membership
+```
+
+---
+
+# **4. Create a File and Check Permissions**
 
 ```bash
 touch testfile.txt
 ls -l testfile.txt
 ```
 
-### Modify permissions (symbolic)
+Example output:
+
+```
+-rw-r--r-- 1 ubuntu ubuntu 0 Feb 19 testfile.txt
+```
+
+Breakdown:
+
+| Part          | Meaning            |
+| ------------- | ------------------ |
+| rw-           | User permissions   |
+| r--           | Group permissions  |
+| r--           | Others permissions |
+| ubuntu ubuntu | Owner and group    |
+
+---
+
+# **5. Modify Permissions (Symbolic Mode)**
 
 ```bash
 chmod u+rwx testfile.txt
@@ -53,41 +104,108 @@ chmod g+rw testfile.txt
 chmod o-r testfile.txt
 ```
 
-### Modify permissions (numeric)
+Check:
+
+```bash
+ls -l testfile.txt
+```
+
+---
+
+# **6. Modify Permissions (Numeric Mode)**
 
 ```bash
 chmod 754 testfile.txt
 ```
 
-### Change ownership & group
+This changes to:
+
+| Entity | Code | Meaning |
+| ------ | ---- | ------- |
+| User   | 7    | rwx     |
+| Group  | 5    | r-x     |
+| Others | 4    | r--     |
+
+---
+
+# **7. Change Ownership & Group**
 
 ```bash
 sudo chown labuser testfile.txt
 sudo chgrp devgroup testfile.txt
 ```
 
-### Test user switching
+Or combine both:
+
+```bash
+sudo chown labuser:devgroup testfile.txt
+```
+
+---
+
+# **8. Check Effective Permissions Using `namei`**
+
+```bash
+namei -l testfile.txt
+```
+
+This shows **permissions on every directory in the path**, useful for troubleshooting.
+
+---
+
+# **9. Switch Users**
+
+Switch to the new user:
 
 ```bash
 su - labuser
-ls -l
+whoami
+```
+
+Try accessing the file:
+
+```bash
+ls -l /home/ubuntu/testfile.txt   # or correct path
+```
+
+Exit back:
+
+```bash
 exit
 ```
 
 ---
 
-## Expected Outcomes
+# **10. Check sudo Privileges (If Required)**
 
-* Understand user & group creation
-* Ability to modify permissions using numeric and symbolic modes
-* Understand how ownership affects file access
-* Confidently use `sudo`, `su`, `chmod`, `chown`, `chgrp`
+```bash
+sudo -l
+```
+
+This shows what commands the user can run with sudo.
 
 ---
 
-## Tips
+# **Tips**
 
-* Numeric permissions:
+### **Permission numbers (cheat sheet)**
 
-  * `7 = rwx`, `6 = rw-`, `5 = r-x`, `4 = r--`
-* If a user is added to a group, they must **logout/login** for changes to apply
+* `7 = rwx`
+* `6 = rw-`
+* `5 = r-x`
+* `4 = r--`
+* `0 = ---`
+
+### **Useful permission shortcuts**
+
+```bash
+chmod 644 file     # normal text file
+chmod 755 script   # executable script
+chmod 700 private  # only owner can access
+```
+
+### **To apply group changes**
+
+User must **log out and log back in**.
+
+
