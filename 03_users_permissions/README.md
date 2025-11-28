@@ -32,7 +32,7 @@ Learn how Linux manages users, groups, and permissions. Understand ownership, ac
 # **Create a New User**
 
 ```bash
-sudo useradd labuser
+sudo useradd -m -s /bin/bash labuser
 sudo passwd labuser
 ```
 
