@@ -1,4 +1,4 @@
-# **Lab 01: Linux Basics (Enhanced)**
+# **Lab 01: Linux Basics**
 
 ## **Objective**
 
