@@ -159,7 +159,11 @@ df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
 * `df -h /` → shows disk usage of `/`
 * `awk 'NR==2 {print $5}'` → picks the **Use%** column from the 2nd line (e.g., `54%`)
 * `sed 's/%//'` → removes `%`
-
+* **NR = Number of Records** - In `awk`, **NR** is a built-in variable that represents the **current line number** being processed.
+So:
+```
+NR == 2 means **"select only the 2nd line"**.
+```
 **Final output:** only the number → e.g., `54`
 
 ---
