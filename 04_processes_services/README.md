@@ -1,7 +1,3 @@
-Here is the **enhanced and complete version of Lab 04**, matching the improved quality of your previous labs — clearer, more structured, and with extra useful commands/features.
-
----
-
 # **Lab 04: Processes & Services (Enhanced)**
 
 ## **Objective**
@@ -29,7 +25,7 @@ Understand how Linux manages running programs and background tasks. Learn how to
 
 ---
 
-# **1. List Running Processes**
+# **List Running Processes**
 
 Two common process listing formats:
 
@@ -46,7 +42,7 @@ ps aux | grep ssh
 
 ---
 
-# **2. Monitor Live System Activity**
+# **Monitor Live System Activity**
 
 ```bash
 top
@@ -71,7 +67,7 @@ htop
 
 ---
 
-# **3. Check Which Processes Are Listening on Ports**
+# **Check Which Processes Are Listening on Ports**
 
 ```bash
 sudo ss -tulnp
@@ -85,7 +81,7 @@ sudo lsof -i -P -n
 
 ---
 
-# **4. Foreground vs Background Processes**
+# **Foreground vs Background Processes**
 
 Start a long-running process:
 
@@ -119,7 +115,7 @@ fg %1
 
 ---
 
-# **5. Kill a Process**
+# **Kill a Process**
 
 ### Kill by PID:
 
@@ -142,7 +138,7 @@ kill -9 <PID>
 
 ---
 
-# **6. Manage Services Using systemctl**
+# **Manage Services Using systemctl**
 
 ### Check service status:
 
@@ -172,7 +168,7 @@ systemctl is-enabled nginx
 
 ---
 
-# **7. Install and Work With NGINX (Example Service)**
+# **Install and Work With NGINX (Example Service)**
 
 ```bash
 sudo apt update && sudo apt -y install nginx
@@ -183,7 +179,7 @@ sudo systemctl stop nginx
 
 ---
 
-# **8. Enable or Disable a Service at Boot**
+# **Enable or Disable a Service at Boot**
 
 ```bash
 sudo systemctl enable ssh
@@ -192,7 +188,7 @@ sudo systemctl disable ssh
 
 ---
 
-# **9. View Logs Using journalctl**
+# **View Logs Using journalctl**
 
 ### View logs for a specific service:
 
