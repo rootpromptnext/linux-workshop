@@ -243,7 +243,7 @@ ip neigh
 
 * Quick network reset (Ubuntu):
 
-```bash
-sudo systemctl restart NetworkManager
-```
+  ```bash
+  sudo systemctl restart NetworkManager
+  ```
 
