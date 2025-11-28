@@ -34,6 +34,18 @@ ps aux     # BSD style
 ps -ef     # Unix style
 ```
 
+### **`ps aux`**
+
+* **a** → show processes from **all users**
+* **u** → show processes in **user-oriented** format (CPU%, MEM%, etc.)
+* **x** → show processes **not attached to a terminal**
+
+### **`ps -ef`**
+
+* **-e** → show **every** process
+* **-f** → show processes in **full format** (with UID, PPID, time, etc.)
+
+
 Filter specific processes:
 
 ```bash
@@ -72,12 +84,28 @@ htop
 ```bash
 sudo ss -tulnp
 ```
+**ss -tulnp:**
+
+* **-t** → show **TCP** sockets
+* **-u** → show **UDP** sockets
+* **-l** → show **listening** ports
+* **-n** → show ports in **numeric** form (don’t resolve service names)
+* **-p** → show the **process** using each port
+
+**Purpose:** Lists all listening TCP/UDP ports along with the process name/PID.
 
 or
 
 ```bash
 sudo lsof -i -P -n
 ```
+**lsof -i -P -n:**
+
+* **-i** → show **network connections**
+* **-P** → show **port numbers** (don’t convert to service names)
+* **-n** → show **IP addresses** (don’t convert to hostnames)
+
+**Purpose:** List all active network connections with raw IPs and port numbers (no DNS lookup).
 
 ---
 
