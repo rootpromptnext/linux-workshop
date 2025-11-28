@@ -213,5 +213,65 @@ wc -w message.txt     # number of words
 ```bash
 diff file1_renamed.txt message.txt
 ```
+---
 
+### **Inodes, Hard Links, Soft Links & Link Count**
 
+#### **Inode**
+
+* Stores **metadata** of a file: permissions, owner, size, timestamps, disk location.
+* **Does not store the filename**.
+* Example:
+
+```bash
+ls -i file1.txt   # shows inode number
+```
+
+#### **Hard Link**
+
+* Points **directly to the inode**.
+* Shares **the same inode number** and content.
+* Cannot cross filesystems or link directories.
+* Example:
+
+```bash
+ln file1.txt file1_hard.txt
+ls -li
+# file1.txt and file1_hard.txt have same inode number
+```
+
+#### **Soft Link (Symbolic Link)**
+
+* Special file pointing to the **filename/path**.
+* Has **different inode** than the original.
+* Can link directories and cross filesystems.
+* Example:
+
+```bash
+ln -s file1.txt file1_soft.txt
+ls -li
+# file1_soft.txt has different inode, points to file1.txt
+```
+
+#### **Link Count**
+
+* Shows **how many filenames (hard links) point to the inode**.
+* Example:
+
+```bash
+ls -ld file1.txt
+# -rw-rw-r-- 1 ubuntu ubuntu 0 Nov 28 19:47 file1.txt
+```
+
+* Here, `1` = only this file points to the inode.
+
+* After creating a hard link:
+
+```bash
+ln file1.txt file1_hard.txt
+ls -l
+# -rw-rw-r-- 2 ubuntu ubuntu 0 Nov 28 19:47 file1.txt
+# -rw-rw-r-- 2 ubuntu ubuntu 0 Nov 28 19:47 file1_hard.txt
+```
+
+* Now **link count = 2** → two filenames share the same inode.
