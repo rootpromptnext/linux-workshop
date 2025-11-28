@@ -1,97 +1,252 @@
-# Lab 04: Processes & Services
+Here is the **enhanced and complete version of Lab 04**, matching the improved quality of your previous labs — clearer, more structured, and with extra useful commands/features.
 
-## Objective
-Learn how to view, manage, and control system processes and services in Linux.  
-Understand how to monitor system activity, kill processes, and manage services using `systemctl`.
+---
 
-## Topics Covered
-- Viewing running processes (`ps`, `top`, `htop`)  
-- Killing processes (`kill`, `pkill`)  
-- Foreground vs background processes  
-- Managing services (`systemctl start/stop/status`)  
-- Checking logs (`journalctl`)  
+# **Lab 04: Processes & Services (Enhanced)**
 
-## Pre-requisites
-- Basic command line usage  
-- A Linux system with systemd (Ubuntu/CentOS)  
+## **Objective**
 
+Understand how Linux manages running programs and background tasks. Learn how to list, monitor, kill, and control processes, and how to manage system services using **systemd** tools (`systemctl`, `journalctl`).
 
-### List running processes
+---
+
+## **Topics Covered**
+
+* Viewing processes (`ps`, `top`, `htop`)
+* Monitoring real-time CPU & memory usage
+* Foreground vs background jobs
+* Killing processes (`kill`, `pkill`)
+* Checking open ports & process owners
+* Managing services (`systemctl start/stop/enable`)
+* Viewing logs via `journalctl`
+
+---
+
+## **Pre-requisites**
+
+* Basic command-line understanding
+* Linux VM with **systemd** (Ubuntu/CentOS/RHEL/Rocky)
+
+---
+
+# **1. List Running Processes**
+
+Two common process listing formats:
+
 ```bash
-ps aux
-ps -ef
-````
+ps aux     # BSD style
+ps -ef     # Unix style
+```
 
-### Monitor live system activity
+Filter specific processes:
+
+```bash
+ps aux | grep ssh
+```
+
+---
+
+# **2. Monitor Live System Activity**
 
 ```bash
 top
-# press 'q' to quit
 ```
 
-### Optional (if installed):
+Press inside **top**:
+
+| Key | Action         |
+| --- | -------------- |
+| `q` | quit           |
+| `k` | kill process   |
+| `M` | sort by memory |
+| `P` | sort by CPU    |
+
+### Optional (if installed)
 
 ```bash
 htop
 ```
 
-### Start a process and send it to background
+(Scroll, search with `/`, kill processes using F9)
+
+---
+
+# **3. Check Which Processes Are Listening on Ports**
+
+```bash
+sudo ss -tulnp
+```
+
+or
+
+```bash
+sudo lsof -i -P -n
+```
+
+---
+
+# **4. Foreground vs Background Processes**
+
+Start a long-running process:
+
+```bash
+sleep 500
+```
+
+**Send to background** (press `Ctrl + Z`):
+
+```bash
+bg
+```
+
+Run directly in background:
 
 ```bash
 sleep 500 &
+```
+
+List background jobs:
+
+```bash
 jobs
 ```
 
-### Kill a process by PID
+Bring a job back to foreground:
+
+```bash
+fg %1
+```
+
+---
+
+# **5. Kill a Process**
+
+### Kill by PID:
 
 ```bash
 ps -ef | grep sleep
 kill <PID>
 ```
 
-### Kill processes by name
+### Kill by name:
 
 ```bash
 pkill sleep
 ```
 
-### Check service status
+### Kill forcefully (use only if needed):
+
+```bash
+kill -9 <PID>
+```
+
+---
+
+# **6. Manage Services Using systemctl**
+
+### Check service status:
 
 ```bash
 systemctl status ssh
 ```
 
-### Install nginx
+### Start, stop, restart a service:
 
 ```bash
-sudo apt update && sudo apt -y install nginx
-sudo systemctl start  nginx
-sudo systemctl restart  nginx
-```
-
-### Start and stop a service
-
-```bash
-sudo systemctl stop nginx
 sudo systemctl start nginx
+sudo systemctl stop nginx
 sudo systemctl restart nginx
 ```
 
-### Enable or disable a service at boot
+### Check if service is running:
+
+```bash
+systemctl is-active nginx
+```
+
+### Check if service is enabled at boot:
+
+```bash
+systemctl is-enabled nginx
+```
+
+---
+
+# **7. Install and Work With NGINX (Example Service)**
+
+```bash
+sudo apt update && sudo apt -y install nginx
+sudo systemctl start nginx
+sudo systemctl restart nginx
+sudo systemctl stop nginx
+```
+
+---
+
+# **8. Enable or Disable a Service at Boot**
 
 ```bash
 sudo systemctl enable ssh
 sudo systemctl disable ssh
 ```
 
-### Check service logs
+---
+
+# **9. View Logs Using journalctl**
+
+### View logs for a specific service:
+
+```bash
+sudo journalctl -u ssh
+```
+
+Limit time:
 
 ```bash
 sudo journalctl -u ssh --since "10 minutes ago"
 ```
 
-## Tips
+Follow logs live (like `tail -f`):
 
-* `kill -9 <PID>` should be last option (force kill)
-* Use `systemctl status <service>` anytime a service misbehaves
-* Use `journalctl -xe` for detailed error logs
+```bash
+sudo journalctl -u ssh -f
+```
+
+View detailed errors:
+
+```bash
+sudo journalctl -xe
+```
+
+---
+
+# **Extra Commands (Very Useful)**
+
+### Show top 10 memory-consuming processes:
+
+```bash
+ps aux --sort=-%mem | head
+```
+
+### Show top 10 CPU-consuming processes:
+
+```bash
+ps aux --sort=-%cpu | head
+```
+
+### Kill all processes owned by a user:
+
+```bash
+sudo pkill -u username
+```
+
+---
+
+# **Tips**
+
+* Use `kill -9` only if normal `kill` fails
+* Use `top` or `htop` when diagnosing high CPU/memory issues
+* Always run `systemctl status <service>` when a service fails
+* `journalctl -xe` gives detailed logs for failed units
+
+
