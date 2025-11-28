@@ -21,7 +21,7 @@ The workshop is divided into 8 modules with hands-on labs:
 4. **Processes & Services** – Process management and service control  
 5. **Networking Basics** – IP, ping, traceroute, ports  
 6. **Shell Scripting Basics** – Bash scripting, variables, loops, conditionals
-7. **sudo** - Running commands with elevated privileges
-8. **project** - Build a small Linux automation project using users, permissions, shell scripts, services, and logs to apply everything learned so far
+7. **Using sudo** - Running commands with elevated privileges
+8. **Project** - Build a small Linux automation project using users, permissions, shell scripts, services, and logs to apply everything learned so far
 
 
