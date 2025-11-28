@@ -150,6 +150,17 @@ else
     echo "Disk usage normal."
 fi
 ```
+**Short explanation for usage variable:**
+
+```
+df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
+```
+
+* `df -h /` → shows disk usage of `/`
+* `awk 'NR==2 {print $5}'` → picks the **Use%** column from the 2nd line (e.g., `54%`)
+* `sed 's/%//'` → removes `%`
+
+**Final output:** only the number → e.g., `54`
 
 ---
 
