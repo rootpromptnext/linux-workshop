@@ -27,7 +27,7 @@ Learn how to inspect Linux network configuration, test connectivity, verify DNS,
 
 ---
 
-# **1. View Network Interfaces & IP Addresses**
+# **View Network Interfaces & IP Addresses**
 
 ```bash
 ip a
@@ -47,7 +47,7 @@ ifconfig
 
 ---
 
-# **2. View Routing Table**
+# **View Routing Table**
 
 ```bash
 ip route
@@ -61,7 +61,7 @@ ip route | grep default
 
 ---
 
-# **3. Check Link Status & Statistics**
+# **Check Link Status & Statistics**
 
 Check if cable/virtual NIC is up/down:
 
@@ -77,7 +77,7 @@ ip -s link
 
 ---
 
-# **4. Test Network Connectivity**
+# **Test Network Connectivity**
 
 Ping a public domain:
 
@@ -95,7 +95,7 @@ ping -c 4 8.8.8.8
 
 ---
 
-# **5. DNS Lookup**
+# **DNS Lookup**
 
 Using `nslookup`:
 
@@ -118,7 +118,7 @@ cat /etc/resolv.conf
 
 ---
 
-# **6. Identify Listening Ports & Active Connections**
+# **Identify Listening Ports & Active Connections**
 
 Modern recommended tool:
 
@@ -154,7 +154,7 @@ ss -un
 
 ---
 
-# **7. Test Port Connectivity**
+# **Test Port Connectivity**
 
 Check if a remote port is open:
 
@@ -176,7 +176,7 @@ nc google.com 80
 
 ---
 
-# **8. Check Hostname & Hosts File**
+# **Check Hostname & Hosts File**
 
 ```bash
 hostname
@@ -192,7 +192,7 @@ sudo nano /etc/hosts
 
 ---
 
-# **9. Verify External IP (Optional)**
+# **Verify External IP**
 
 ```bash
 curl ifconfig.me
@@ -200,7 +200,7 @@ curl ifconfig.me
 
 ---
 
-# **10. ARP Table (Local Network Discovery)**
+# **ARP Table (Local Network Discovery)**
 
 ```bash
 ip neigh
@@ -247,6 +247,3 @@ ip neigh
 sudo systemctl restart NetworkManager
 ```
 
-
-
-Just tell me which one you want next!
