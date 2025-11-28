@@ -1,4 +1,4 @@
-# **Lab 04: Processes & Services (Enhanced)**
+# **Lab 04: Processes & Services**
 
 ## **Objective**
 
