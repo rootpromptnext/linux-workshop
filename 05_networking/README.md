@@ -241,7 +241,7 @@ ip neigh
   ss -tulnp | grep <port>
   ```
 
-### Quick network reset (Ubuntu):
+* Quick network reset (Ubuntu):
 
 ```bash
 sudo systemctl restart NetworkManager
