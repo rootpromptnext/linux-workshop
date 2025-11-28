@@ -1,4 +1,4 @@
-# **Lab 06: Shell Scripting Basics (Enhanced Version)**
+# **Lab 06: Shell Scripting Basics**
 
 ## **Objective**
 
