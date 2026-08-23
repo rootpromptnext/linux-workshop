@@ -23,6 +23,13 @@ Update packages:
 sudo apt update
 ````
 
+Remove if already installed :
+
+```
+systemctl stop nginx
+sudo apt purge nginx nginx-common nginx-core
+sudo apt autoremove
+```
 Install nginx:
 
 ```bash
